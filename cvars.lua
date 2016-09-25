@@ -41,6 +41,7 @@ local cvars = {
 
 	-- ActionBars
 	lockActionBars = 1,
+	alwaysShowActionBars = 0,
 	countdownForCooldowns = 0,
 
 	-- Names
@@ -115,6 +116,7 @@ local uvars = {
 	scriptErrors = 1,
 	taintLog = 1,
 	trackQuestSorting = 'proximity',
+	secureAbilityToggle = 1,
 
 	nameplateOtherTopInset = -1,
 	nameplateOtherBottomInset = -1,
