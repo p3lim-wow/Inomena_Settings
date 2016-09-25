@@ -75,3 +75,10 @@ table.insert(C.Settings, function()
 
 	Initialize()
 end)
+
+function E:UPDATE_CHAT_COLOR_NAME_BY_CLASS(type, enabled)
+	if(not enabled) then
+		SetChatColorNameByClass(type, true)
+	end
+end
+
