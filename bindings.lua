@@ -4,8 +4,25 @@ local E, F, C = unpack(select(2, ...))
 local Profession = CreateFrame('Button', C.Name .. 'ProfessionButton', nil, 'SecureActionButtonTemplate')
 Profession:SetAttribute('type', 'spell')
 function E:SKILL_LINES_CHANGED()
-	if(not InCombatLockdown() and GetProfessions()) then
-		Profession:SetAttribute('spell', GetProfessionInfo(GetProfessions()))
+	local profession, secondProfession = GetProfessions()
+	if(not InCombatLockdown()) then
+		local professionID = 1
+		if(not profession) then
+			profession = secondProfession
+			professionID = 2
+		end
+
+		if(profession) then
+			local name, _, _, _, numSpells, spellOffset = GetProfessionInfo(profession)
+			if(numSpells > 1) then
+				if(profession == 7) then
+					-- Herbalism
+					name = GetSpellBookItemName(professionID + spellOffset, 'professions')
+				end
+			end
+
+			Profession:SetAttribute('spell', name)
+		end
 	end
 end
 
