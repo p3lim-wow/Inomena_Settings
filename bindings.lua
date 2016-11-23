@@ -102,3 +102,44 @@ function E:PLAYER_LOGIN()
 	SetBindingSpell('SHIFT-6', 'Garrison Ability')
 	SetBindingSpell('CTRL-F', GetSpellInfo(80451))
 end
+
+-- Petbattle select-pet overrides
+local function SwitchPet()
+	PetBattleFrame_PetSelectionFrameUpdateVisible(IsShiftKeyDown())
+end
+
+function E:PET_BATTLE_OPENING_START()
+	E:RegisterEvent('MODIFIER_STATE_CHANGED', SwitchPet)
+end
+
+function E:PET_BATTLE_OVER()
+	E:UnregisterEvent('MODIFIER_STATE_CHANGED', SwitchPet)
+end
+
+local function OnClick(self)
+	if(C_PetBattles.CanPetSwapIn(self:GetID())) then
+		C_PetBattles.ChangePet(self:GetID())
+	end
+end
+
+local selectButtons = {}
+for index = 1, NUM_BATTLE_PETS_IN_BATTLE do
+	local Button = CreateFrame('Button', C.Name .. 'PetSelectButton' .. index)
+	Button:SetScript('OnClick', OnClick)
+	Button:SetID(index)
+
+	selectButtons[index] = Button
+end
+
+PetBattleFrame.BottomFrame.PetSelectionFrame:HookScript('OnShow', function()
+	for index = 1, NUM_BATTLE_PETS_IN_BATTLE do
+		local Button = selectButtons[index]
+		SetOverrideBindingClick(Button, true, 'SHIFT-' .. index, Button:GetName())
+	end
+end)
+
+PetBattleFrame.BottomFrame.PetSelectionFrame:HookScript('OnHide', function()
+	for index = 1, NUM_BATTLE_PETS_IN_BATTLE do
+		ClearOverrideBindings(selectButtons[index])
+	end
+end)
