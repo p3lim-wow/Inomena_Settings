@@ -1,5 +1,6 @@
 local E, F, C = unpack(select(2, ...))
 
+-- Professions/artifact button
 local Profession = CreateFrame('Button', C.Name .. 'ProfessionButton', nil, 'SecureActionButtonTemplate')
 Profession:SetAttribute('type', 'spell')
 function E:SKILL_LINES_CHANGED()
@@ -29,6 +30,7 @@ hooksecurefunc('CloseWindows', function()
 	shown = false
 end)
 
+-- Eject passenger button
 local Eject = CreateFrame('Button', C.Name .. 'EjectButton')
 Eject:SetScript('OnClick', function()
 	for index = 1, UnitVehicleSeatCount('player') do
@@ -38,9 +40,11 @@ Eject:SetScript('OnClick', function()
 	end
 end)
 
+-- Reload UI button
 local Reload = CreateFrame('Button', C.Name .. 'ReloadButton')
 Reload:SetScript('OnClick', ReloadUI)
 
+-- Hearthstone button
 local Hearthstone = CreateFrame('Button', C.Name .. 'HearthstoneButton', nil, 'SecureActionButtonTemplate')
 local function UpdateHearthstone()
 	if(InCombatLockdown()) then
@@ -69,6 +73,7 @@ end
 
 E:RegisterEvent('TOYS_UPDATED', UpdateHearthstone)
 
+-- Bind keys
 function E:PLAYER_LOGIN()
 	UpdateHearthstone()
 
