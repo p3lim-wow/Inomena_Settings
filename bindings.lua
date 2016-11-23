@@ -143,3 +143,51 @@ PetBattleFrame.BottomFrame.PetSelectionFrame:HookScript('OnHide', function()
 		ClearOverrideBindings(selectButtons[index])
 	end
 end)
+
+-- OPie and Alt modifier for mages
+function E:ADDON_LOADED(addon)
+	if(addon ~= 'OPie') then
+		return
+	end
+
+	if(select(2, UnitClass('player')) ~= 'MAGE') then
+		return
+	end
+
+	-- Create and register a ring
+	local macro = '/cast {{spell:%s}}'
+	local ring = {
+		name=' Mage Teleports', limit='MAGE',
+		{id = 193759}, -- Hall of the Guardian
+		{id = macro:format(224869)}, -- Dalaran - Broken Isles
+		{id = macro:format(53140)}, -- Dalaran - Northrend
+		{id = macro:format(120145)}, -- Ancient Dalaran
+		{id = macro:format(132627)}, -- Vale of Eternal Blossoms
+		{id = macro:format(88344)}, -- Tol Barad
+		{id = macro:format(35715)}, -- Shattrath
+		{id = macro:format('176242/176248')}, -- Warspear/Stormshield
+		{id = macro:format('49358/49359')}, -- Stonard/Theramore
+		{id = macro:format('32272/32271')}, -- Silvermoon/Exodar
+		{id = macro:format('3566/3565')}, -- Thunder Bluff/Darnassus
+		{id = macro:format('3563/3562')}, -- Undercity/Ironforge
+		{id = macro:format('3567/3561')}, -- Orgrimmar/Stormwind
+	}
+
+	(OneRingLib and OneRingLib.ext and OneRingLib.ext.RingKeeper):SetRing('TelePortal', ring)
+
+	-- Toggle the ring on alt modifier
+	local Portals = CreateFrame('Frame', C.Name .. 'OPiePortals', UIParent, 'SecureHandlerStateTemplate')
+	RegisterStateDriver(Portals, 'teleportal', '[mod:alt] TelePortal; nil')
+	ORL_RTrigger:WrapScript(Portals, "OnAttributeChanged", [[
+		if(name == 'state-teleportal') then
+			if(value == 'TelePortal') then
+				owner:Run(ORL_OpenClick, value)
+			elseif(activeRing) then
+				owner:Run(ORL_CloseActiveRing)
+			end
+		end
+	]])
+
+	return true
+end
+
