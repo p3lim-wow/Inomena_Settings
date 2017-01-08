@@ -158,22 +158,30 @@ function E:ADDON_LOADED(addon)
 	end
 
 	-- Create and register a ring
-	local macro = '/cast {{spell:%s}}'
+	local macro = '/cast [mod:shift] {{spell:%s}}; {{spell:%s}}'
 	local ring = {
-		name=' Mage Teleports', limit='MAGE',
-		{id = 193759}, -- Hall of the Guardian
-		{id = macro:format(224869)}, -- Dalaran - Broken Isles
-		{id = macro:format(53140)}, -- Dalaran - Northrend
-		{id = macro:format(120145)}, -- Ancient Dalaran
-		{id = macro:format(132627)}, -- Vale of Eternal Blossoms
-		{id = macro:format(88344)}, -- Tol Barad
-		{id = macro:format(35715)}, -- Shattrath
-		{id = macro:format('176242/176248')}, -- Warspear/Stormshield
-		{id = macro:format('49358/49359')}, -- Stonard/Theramore
-		{id = macro:format('32272/32271')}, -- Silvermoon/Exodar
-		{id = macro:format('3566/3565')}, -- Thunder Bluff/Darnassus
-		{id = macro:format('3563/3562')}, -- Undercity/Ironforge
-		{id = macro:format('3567/3561')}, -- Orgrimmar/Stormwind
+		name=' Mage Portals and Teleports', limit='MAGE',
+		{id = 193759, c = 'd000ff'}, -- Hall of the Guardian
+		{id = macro:format(224871, 224869), c = '83ff61'}, -- Dalaran - Broken Isles
+		{id = macro:format(53142, 53140), c = 'a54cff'}, -- Dalaran - Northrend
+		{id = macro:format(120146, 120145), c = 'a54cff'}, -- Ancient Dalaran
+		{id = macro:format(132626, 132627), c = 'ffc34d'}, -- Vale of Eternal Blossoms
+		{id = macro:format(88346, 88344), c = 'f03c00'}, -- Tol Barad
+		{id = macro:format(35717, 35715), c = '4dffc3'}, -- Shattrath
+
+		{id = macro:format('176244', '176242'), c = '00abf0'}, -- Warspear
+		{id = macro:format('49361', '49358'), c = 'b0ff26'}, -- Stonard
+		{id = macro:format('32267', '32272'), c = 'f00e00'}, -- Silvermoon
+		{id = macro:format('11420', '3566'), c = '4cddff'}, -- Thunder Bluff
+		{id = macro:format('11418', '3563'), c = '88ff4d'}, -- Undercity
+		{id = macro:format('11417', '3567'), c = 'ff8126'}, -- Orgrimmar
+
+		{id = macro:format('176246', '176248'), c = 'f03000'}, -- Stormshield
+		{id = macro:format('49360', '49359'), c = 'f09d00'}, -- Theramore
+		{id = macro:format('32266', '32271'), c = 'f024e2'}, -- Exodar
+		{id = macro:format('11419', '3565'), c = '9d0df0'}, -- Darnassus
+		{id = macro:format('11416', '3562'), c = '6ecff0'}, -- Ironforge
+		{id = macro:format('10059', '3561'), c = '0d54f0'}, -- Stormwind
 	}
 
 	(OneRingLib and OneRingLib.ext and OneRingLib.ext.RingKeeper):SetRing('TelePortal', ring)
