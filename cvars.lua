@@ -69,7 +69,7 @@ local cvars = {
 
 	-- Camera
 	cameraWaterCollision = 0,
-	cameraDistanceMaxFactor = 2.6, -- 2.6 is default max
+	cameraDistanceMaxZoomFactor = 2.6, -- 2.6 is default max
 	cameraSmoothStyle = 0,
 
 	-- Mouse
