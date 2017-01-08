@@ -186,19 +186,6 @@ function E:ADDON_LOADED(addon)
 
 	(OneRingLib and OneRingLib.ext and OneRingLib.ext.RingKeeper):SetRing('TelePortal', ring)
 
-	-- Toggle the ring on alt modifier
-	local Portals = CreateFrame('Frame', C.Name .. 'OPiePortals', UIParent, 'SecureHandlerStateTemplate')
-	RegisterStateDriver(Portals, 'teleportal', '[mod:alt] TelePortal; nil')
-	ORL_RTrigger:WrapScript(Portals, "OnAttributeChanged", [[
-		if(name == 'state-teleportal') then
-			if(value == 'TelePortal') then
-				owner:Run(ORL_OpenClick, value)
-			elseif(activeRing) then
-				owner:Run(ORL_CloseActiveRing)
-			end
-		end
-	]])
-
 	return true
 end
 
