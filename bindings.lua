@@ -76,7 +76,10 @@ local function UpdateHearthstone()
 		-- Ethereal Portal
 		Hearthstone:SetAttribute('type', 'toy')
 		Hearthstone:SetAttribute('toy', 54452)
-
+	elseif(PlayerHasToy(142542)) then
+		-- Tome of Town Portal
+		Hearthstone:SetAttribute('type', 'toy')
+		Hearthstone:SetAttribute('toy', 142542)
 	elseif(PlayerHasToy(64488)) then
 		-- The Innkeeper's Daughter
 		Hearthstone:SetAttribute('type', 'toy')
