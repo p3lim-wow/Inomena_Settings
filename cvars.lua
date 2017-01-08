@@ -117,6 +117,7 @@ local uvars = {
 	taintLog = 1,
 	trackQuestSorting = 'proximity',
 	secureAbilityToggle = 1,
+	cursorSizePreferred = 1,
 
 	nameplateOtherTopInset = -1,
 	nameplateOtherBottomInset = -1,
