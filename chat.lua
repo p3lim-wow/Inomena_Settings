@@ -46,6 +46,8 @@ table.insert(C.Settings, function()
 	ChatFrame_AddChannel(Frame, 'General')
 	ChatFrame_AddChannel(Frame, 'Trade')
 
+	CreateChatFrame('Skada') -- Empty frame for 'Skada Chat Frame Integrator'
+
 	-- XXX: some weird shit is going on, have to double the offsets before we save the position
 	parent:ClearAllPoints()
 	parent:SetPoint('BOTTOMLEFT', UIParent, 70, 100)
