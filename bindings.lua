@@ -14,11 +14,9 @@ function E:SKILL_LINES_CHANGED()
 
 		if(profession) then
 			local name, _, _, _, numSpells, spellOffset = GetProfessionInfo(profession)
-			if(numSpells > 1) then
-				if(profession == 7) then
-					-- Herbalism
-					name = GetSpellBookItemName(professionID + spellOffset, 'professions')
-				end
+			if(profession == 6) then
+				-- Herbalism
+				name = GetSpellBookItemName(professionID + spellOffset, 'professions')
 			end
 
 			Profession:SetAttribute('spell', name)
