@@ -1,6 +1,11 @@
 local E, F, C = unpack(select(2, ...))
 
 -- Professions/artifact button
+local offsetProfessions = {
+	[182] = 1, -- Herbalism
+	[186] = 1, -- Mining
+}
+
 local Profession = CreateFrame('Button', C.Name .. 'ProfessionButton', nil, 'SecureActionButtonTemplate')
 Profession:SetAttribute('type', 'spell')
 function E:SKILL_LINES_CHANGED()
@@ -13,10 +18,10 @@ function E:SKILL_LINES_CHANGED()
 		end
 
 		if(profession) then
-			local name, _, _, _, numSpells, spellOffset = GetProfessionInfo(profession)
-			if(profession == 6) then
-				-- Herbalism
-				name = GetSpellBookItemName(professionID + spellOffset, 'professions')
+			local name, _, _, _, numSpells, spellOffset, skillID = GetProfessionInfo(profession)
+			local offset = offsetProfessions[skillID]
+			if(offset) then
+				name = GetSpellBookItemName(offset + spellOffset, 'professions')
 			end
 
 			Profession:SetAttribute('spell', name)
