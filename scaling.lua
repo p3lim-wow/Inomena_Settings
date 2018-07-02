@@ -13,5 +13,7 @@ function E:PLAYER_LOGIN()
 
 		-- Multiplier to mimic 1080p scaling
 		C.SizeMultiplier = 1080 / 768
+	else
+		SetCVar('useuiscale', 0)
 	end
 end
