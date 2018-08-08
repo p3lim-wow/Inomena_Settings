@@ -1,13 +1,20 @@
-## Interface: 70300
+## Interface: 80000
 ## Author: p3lim
 ## Version: Alpha
 ## Title: Inomena: Settings
 ## Notes: Personal UI Settings
+## RequiredDeps: Inomena
 ## SavedVariablesPerCharacter: InomenaSettings
 
 init.lua
-
+scaling.lua
 cvars.lua
 chat.lua
-scaling.lua
+
+buttons/Profession.lua
+buttons/Eject.lua
+buttons/Reload.lua
+buttons/Hearthstone.lua
+
 bindings.lua
+opie.lua
