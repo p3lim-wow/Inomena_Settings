@@ -48,19 +48,12 @@ table.insert(C.Settings, function()
 
 	CreateChatFrame('Skada') -- Empty frame for 'Skada Chat Frame Integrator'
 
-	-- XXX: some weird shit is going on, have to double the offsets before we save the position
 	parent:ClearAllPoints()
-	parent:SetPoint('BOTTOMLEFT', UIParent, 70, 100)
+	parent:SetPoint('BOTTOMLEFT', UIParent, 50, 50)
 	parent:SetSize(400, 140)
 
 	FCF_SavePositionAndDimensions(parent)
 	FCF_SetWindowAlpha(parent, 0)
-
-	-- XXX: then set the position to what we actually want
-	parent:ClearAllPoints()
-	parent:SetPoint('BOTTOMLEFT', UIParent, 35, 50)
-
-	-- TODO: fix the fonts, weird sizes when we reset
 
 	ChangeChatColor('OFFICER', 3/4, 1/2, 1/2)
 	ChangeChatColor('RAID', 0, 1, 4/5)
