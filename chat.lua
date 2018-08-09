@@ -46,7 +46,7 @@ table.insert(C.Settings, function()
 	ChatFrame_AddChannel(Frame, 'General')
 	ChatFrame_AddChannel(Frame, 'Trade')
 
-	CreateChatFrame('Skada') -- Empty frame for 'Skada Chat Frame Integrator'
+	CreateChatFrame('Details') -- Empty frame for 'Details!'
 
 	parent:ClearAllPoints()
 	parent:SetPoint('BOTTOMLEFT', UIParent, 50, 50)
