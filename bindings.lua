@@ -7,5 +7,15 @@ function E:PLAYER_LOGIN()
 	SetBindingClick('F12', C.Name .. 'ReloadButton')
 	SetBindingClick('BACKSPACE', C.Name .. 'ProfessionButton')
 	SetBindingClick('SHIFT-BACKSPACE', C.Name .. 'HearthstoneButton')
-	SetBindingSpell('CTRL-F', GetSpellInfo(80451))
+	SetBindingSpell('CTRL-F', GetSpellInfo(80451)) -- Survey, Archaelogy
+end
+
+local function TalentTree()
+	PlayerTalentTab_OnClick(_G['PlayerTalentFrameTab' .. TALENTS_TAB])
+end
+
+function E:ADDON_LOADED(addon)
+	if(addon == 'Blizzard_TalentUI') then
+		hooksecurefunc('PlayerTalentFrame_Toggle', TalentTree)
+	end
 end
