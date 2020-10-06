@@ -14,6 +14,9 @@ local function Initialize()
 
 	F:Print('Successfully initialized settings')
 	InomenaSettings = true
+
+	-- injecting settings can/will fuck with FrameXML, so reload to be safe
+	ReloadUI()
 end
 
 local function Decline()
